@@ -266,8 +266,7 @@
 <p>Though a Fragment’s lifecycle is tied to its owning activity, it has its own wrinkle on the standard activity lifecycle. It includes basic activity lifecycle methods such as onResume(), but also important are methods related to interactions with the activity and UI generation.<br>The core series of lifecycle methods that are called to bring a fragment up to resumed state (interacting with the user) are:<br><strong>onAttach(Activity)</strong> called once the fragment is associated with its activity.<br><strong>onCreate(Bundle)</strong> called to do initial creation of the fragment.<br><strong>onCreateView(LayoutInflater, ViewGroup, Bundle)</strong> creates and returns the view hierarchy associated with the fragment.<br><strong>onActivityCreated(Bundle) </strong>tells the fragment that its activity has completed its own Activity.onCreate().<br><strong>onViewStateRestored(Bundle)</strong> tells the fragment that all of the saved state of its view hierarchy has been restored.<br><strong>onStart()</strong> makes the fragment visible to the user (based on its containing activity being started).<br><strong>onResume()</strong> makes the fragment begin interacting with the user (based on its containing activity being resumed).  </p>
 <p></p><p>As a fragment is no longer being used, it goes through a reverse series of callbacks:<br><strong>onPause()</strong> fragment is no longer interacting with the user either because its activity is being paused or a fragment operation is modifying it in the activity.<br><strong>onStop()</strong> fragment is no longer visible to the user either because its activity is being stopped or a fragment operation is modifying it in the activity.<br><strong>onDestroyView()</strong> allows the fragment to clean up resources associated with its View.<br><strong>onDestroy()</strong> called to do final cleanup of the fragment’s state.<br><strong>onDetach()</strong> called immediately prior to the fragment no longer being associated with its activity.</p>
 </blockquote>
-<p>看到这里是不是有点晕，这段英文描述应该还算简单清晰，如果看不懂说明你的英文水平时候提高一下了。</p>
-<p>简单解释一下：</p>
+<p>看到这里是不是有点晕，本人英语水平有限，加上英语词典工具，也能看懂个十之八九。<br>在这里简单解释一下：</p>
 <blockquote>
 <p><strong>onAttach(Activity)</strong> : 当fragment关联到Activity时调用，新版代码中已经废弃，改为<strong>onAttach(Context context)</strong>，通过这个方法可以在fragment中拿到context，此处改动应该还是鼓励开发者在fragment中撇清与activity的关系，antivity的生命周期不应该由fragment控制。<br><strong>onCreate(Bundle):</strong>看下源码中的描述，在onAttach之后调用，在onCreate之前调用，此处的操作为初始化fragment<br> <strong>onCreateView(LayoutInflater, ViewGroup, Bundle):</strong> 创建并返回需要展示的视图，使用inflater.inflate()方法使用布局文件创建视图<br><strong>onActivityCreated(Bundle)：</strong> 通知fragment，它所在的activity.onCreate方法已经执行完成<br><strong>onViewStateRestored(Bundle):</strong> 通知fragment，之前保存的状态已经恢复，可以在这个方法恢复视图的状态，例如复选框的选中状态，调用时机为<strong>onActivityCreated</strong>之后，<strong>onStart</strong>之前<br><strong>onStart():</strong> 当fragment对用户可见时调用，通常与activity的start方法绑定  <strong>onResume():</strong> 当fragment处于可以与用户交互状态时调用，与activity的onResume方法绑定  </p>
 </blockquote>
@@ -325,7 +324,9 @@ android:layout_height=&quot;match_parent&quot;&gt;
 <ol>
 <li><p>activity中 getFragmentManager</p>
 </li>
-<li><p>如果使用android.support.v4.app.Fragment，则需要用FragmentActivity中的getSupportFragmentManager</p>
+<li><p>如果使用android.support.v4.app.Fragment，则需要用FragmentActivity中的getSupportFragmentManager  </p>
+</li>
+<li><p>使用Fragment的getFragmentManager(),注意此方法只有在fragment被纳入到事务中时才不为空 </p>
 </li>
 </ol>
 <p>FragmentManager常用方法：<br><strong>addOnBackStackChangedListener()：</strong>添加一个栈变化的监听<br><strong>beginTransaction()：</strong>开启一个fragment操作的事务<br><strong>findFragmentById()：</strong>通过ID查找fragment,首先查找添加到当前activity中的，如果没有，则查找当前所有栈中的fragment<br><strong>findFragmentByTag:</strong>同findFragmentById，只是通过tag标志查找<br><strong>popBackStack():</strong>栈回退，相当于撤销加入到栈中的操作，此方法是异步的，回退操作请求会加入到循环队列中，回退操作不会立即执行。<br><strong>popBackStackImmediate():</strong>与popBackStack不同的是，此方式是同步的，会立即执行<br><strong>execPendingActions():</strong>立即执行加入到fragmentTransaction的操作（同时会从主线程循环队列中移除）</p>
@@ -367,6 +368,7 @@ static final int STARTED = 4;          // Created and started, not resumed.
 static final int RESUMED = 5;          // Created started and resumed.
 </code></pre><p>如果状态由0直接到5，fragment生命周期的方法会直接依次执行。</p>
 <p>因此在activity的onStart方法内会把fragment调用值onStart方法。</p>
+<p>附上一段Fragment切换的<a href="https://github.com/emf1002/Android-Learn.git" target="_blank" rel="external">演示代码</a></p>
 <p></p><p>文章参考：<br><a href="http://blog.csdn.net/lmj623565791/article/details/37970961" target="_blank" rel="external">Android Fragment 真正的完全解析</a></p>
 
       
