@@ -32,7 +32,7 @@ fragment : [‘frægm(ə)nt]
 
 有了Frament，原先Activity复杂的代码可以分别在Fragment中实现
 2、Fragment 生">
-<meta property="og:updated_time" content="2016-01-26T03:19:18.492Z">
+<meta property="og:updated_time" content="2016-01-26T05:17:02.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fragment">
 <meta name="twitter:description" content="1、Android Fragment首先注意发音：
@@ -305,8 +305,9 @@ android:layout_height=&quot;match_parent&quot;&gt;
 </li>
 <li><p>如果使用android.support.v4.app.Fragment，则需要用FragmentActivity中的getSupportFragmentManager  </p>
 </li>
-<li><p>使用Fragment的getFragmentManager(),注意此方法只有在fragment被纳入到事务中时才不为空 </p>
+<li><p>使用Fragment的getFragmentManager(),注意此方法只有在fragment被纳入到事务中时才不为空,返回的是activity获取的mananger</p>
 </li>
+<li>使用Fragment的getChildFragmentManager(),使用它来管理内部的fragment </li>
 </ol>
 <p>FragmentManager常用方法：<br><strong>addOnBackStackChangedListener()：</strong>添加一个栈变化的监听<br><strong>beginTransaction()：</strong>开启一个fragment操作的事务<br><strong>findFragmentById()：</strong>通过ID查找fragment,首先查找添加到当前activity中的，如果没有，则查找当前所有栈中的fragment<br><strong>findFragmentByTag:</strong>同findFragmentById，只是通过tag标志查找<br><strong>popBackStack():</strong>栈回退，相当于撤销加入到栈中的操作，此方法是异步的，回退操作请求会加入到循环队列中，回退操作不会立即执行。<br><strong>popBackStackImmediate():</strong>与popBackStack不同的是，此方式是同步的，会立即执行<br><strong>execPendingActions():</strong>立即执行加入到fragmentTransaction的操作（同时会从主线程循环队列中移除）</p>
 <p>FragmentTransaction常用方法,可链式调用：  </p>
