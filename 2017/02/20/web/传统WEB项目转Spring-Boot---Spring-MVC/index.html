@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Never Ever Stop Trying</title>
+  <title>传统WEB项目转Spring Boot---Spring MVC | Never Ever Stop Trying</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Never Ever Stop Trying">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Spring Boot自动化配置帮我们做了很多工作，关于Spring MVC我们来看一下默认情况下都配置了什么,对于每项配置的作用请参考Spring MVC相关技术文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="传统WEB项目转Spring Boot---Spring MVC">
+<meta property="og:url" content="http://yoursite.com/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/index.html">
 <meta property="og:site_name" content="Never Ever Stop Trying">
+<meta property="og:description" content="Spring Boot自动化配置帮我们做了很多工作，关于Spring MVC我们来看一下默认情况下都配置了什么,对于每项配置的作用请参考Spring MVC相关技术文章">
+<meta property="og:updated_time" content="2017-02-21T07:26:36.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Never Ever Stop Trying">
+<meta name="twitter:title" content="传统WEB项目转Spring Boot---Spring MVC">
+<meta name="twitter:description" content="Spring Boot自动化配置帮我们做了很多工作，关于Spring MVC我们来看一下默认情况下都配置了什么,对于每项配置的作用请参考Spring MVC相关技术文章">
   
     <link rel="alternative" href="/atom.xml" title="Never Ever Stop Trying" type="application/atom+xml">
   
@@ -145,16 +149,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-web/传统WEB项目转Spring-Boot---Spring-MVC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-web/传统WEB项目转Spring-Boot---Spring-MVC" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/">传统WEB项目转Spring Boot---Spring MVC</a>
+    <h1 class="article-title" itemprop="name">
+      传统WEB项目转Spring Boot---Spring MVC
     </h1>
   
 
@@ -167,10 +169,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Spring Boot自动化配置帮我们做了很多工作，关于Spring MVC我们来看一下默认情况下都配置了什么,对于每项配置的作用请参考Spring MVC相关技术文章<br></p>
-        
-          <a class="article-more-a" href="/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/#more">more >></a>
-        
+        <p>Spring Boot自动化配置帮我们做了很多工作，关于Spring MVC我们来看一下默认情况下都配置了什么,对于每项配置的作用请参考Spring MVC相关技术文章<br><a id="more"></a></p>
+<h2 id="1、Spring-MVC的配置类"><a href="#1、Spring-MVC的配置类" class="headerlink" title="1、Spring MVC的配置类"></a>1、Spring MVC的配置类</h2><p>Spring MVC的配置类使用的时<code>WebMvcAutoConfiguration</code><br><strong>注意 Spring Boot 所有的配置都在<code>org.springframework.boot.autoconfigure</code>包下</strong><br>其中web包下包含了Spring MVC的配置</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Configuration</span></div><div class="line"><span class="variable">@ConditionalOnWebApplication</span>  <span class="comment">//web app条件下</span></div><div class="line"><span class="variable">@ConditionalOnClass</span>(&#123; Servlet.class, DispatcherServlet.class,</div><div class="line">        WebMvcConfigurerAdapter.class &#125;)  <span class="comment">//class条件</span></div><div class="line"><span class="variable">@ConditionalOnMissingBean</span>(WebMvcConfigurationSupport.class) <span class="comment">//bean条件</span></div><div class="line"><span class="variable">@AutoConfigureOrder</span>(Ordered.HIGHEST_PRECEDENCE + <span class="number">10</span>)  </div><div class="line"><span class="variable">@AutoConfigureAfter</span>(DispatcherServletAutoConfiguration.class) <span class="comment">//在DispatcherServlet配置之后</span></div><div class="line">public class WebMvcAutoConfiguration &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2、WebMvcAutoConfiguration输出到容器的内容"><a href="#2、WebMvcAutoConfiguration输出到容器的内容" class="headerlink" title="2、WebMvcAutoConfiguration输出到容器的内容"></a>2、WebMvcAutoConfiguration输出到容器的内容</h2><p>通过查看源码，可以看到输出了以下对象到容器(MVC默认配置下)</p>
+<h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><blockquote>
+<p>hiddenHttpMethodFilter:通过隐藏域<code>_method</code>对DELETE,PUT请求提供支持<br>httpPutFormContentFilter:对表单method=”put”进行支持</p>
+</blockquote>
+<h3 id="ViewResolver"><a href="#ViewResolver" class="headerlink" title="ViewResolver"></a>ViewResolver</h3><blockquote>
+<p>InternalResourceViewResolver<br>BeanNameViewResolver<br>ContentNegotiatingViewResolver<br>AcceptHeaderLocaleResolver：如果配置了spring.mvc.locale<br>ViewResolverComposite:mvcViewResolver</p>
+</blockquote>
+<h3 id="HandlerMapping"><a href="#HandlerMapping" class="headerlink" title="HandlerMapping"></a>HandlerMapping</h3><blockquote>
+<p>WelcomePageHandlerMapping: WebMvcAutoConfiguration的内部类<br>SimpleUrlHandlerMapping<br>RequestMappingHandlerMapping<br>HandlerMapping:viewControllerHandlerMapping输出 EmptyHandlerMapping<br>BeanNameUrlHandlerMapping<br>HandlerMapping:resourceHandlerMapping 输出 SimpleUrlHandlerMapping<br>HandlerMapping:defaultServletHandlerMapping 输出 EmptyHandlerMapping</p>
+</blockquote>
+<h3 id="HandlerAdapter"><a href="#HandlerAdapter" class="headerlink" title="HandlerAdapter"></a>HandlerAdapter</h3><blockquote>
+<p>RequestMappingHandlerAdapter<br>HttpRequestHandlerAdapter<br>SimpleControllerHandlerAdapter</p>
+</blockquote>
+<h3 id="HanlderExceptionResolvers"><a href="#HanlderExceptionResolvers" class="headerlink" title="HanlderExceptionResolvers"></a>HanlderExceptionResolvers</h3><blockquote>
+<p>HandlerExceptionResolverComposite:<br>    ExceptionHandlerExceptionResolver<br>    ResponseStatusExceptionResolver<br>    DefaultHandlerExceptionResolver</p>
+</blockquote>
+<h3 id="HttpMessageConverter"><a href="#HttpMessageConverter" class="headerlink" title="HttpMessageConverter"></a>HttpMessageConverter</h3><blockquote>
+<p>HttpMessageConverter通过<code>HttpMessageConvertersAutoConfiguration</code>,<code>WebMvcConfigurationSupport</code>创建默认对象，同时<code>HttpMessageConvertersAutoConfiguration</code>会加载用户的自定义的<code>HttpMessageConverter</code>Bean</p>
+</blockquote>
+<p>默认创建的HttpMessageConverter如下：</p>
+<blockquote>
+<p>ByteArrayHttpMessageConverter<br>StringHttpMessageConverter<br>ResourceHttpMessageConverter<br>SourceHttpMessageConverter<br>AllEncompassingFormHttpMessageConverter</p>
+</blockquote>
+<p>以下会根据classpath下是否有相关包加载</p>
+<blockquote>
+<p>MappingJackson2HttpMessageConverter<br>AtomFeedHttpMessageConverter<br>RssChannelHttpMessageConverter<br>MappingJackson2XmlHttpMessageConverter<br>Jaxb2RootElementHttpMessageConverter<br>GsonHttpMessageConverter</p>
+</blockquote>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><blockquote>
+<p>DateFormatter:spring.mvc.date-format<br>ResourceHttpRequestHandler<br>AntPathMatcher<br>UrlPathHelper:可以拿到请求的路径,帮助HandlerMapping拿到handler<br>ContentNegotiationManager<br>ResourceUrlProvider<br>FormattingConversionService<br>Validator<br>CompositeUriComponentsContributor<br>HandlerExceptionResolver</p>
+</blockquote>
+<h2 id="3、DispatcherServlet配置"><a href="#3、DispatcherServlet配置" class="headerlink" title="3、DispatcherServlet配置"></a>3、DispatcherServlet配置</h2><p>配置类；<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@AutoConfigureOrder</span>(Ordered.HIGHEST_PRECEDENCE)</div><div class="line"><span class="variable">@Configuration</span></div><div class="line"><span class="variable">@ConditionalOnWebApplication</span></div><div class="line"><span class="variable">@ConditionalOnClass</span>(DispatcherServlet.class)</div><div class="line"><span class="variable">@AutoConfigureAfter</span>(EmbeddedServletContainerAutoConfiguration.class)</div><div class="line">public class DispatcherServletAutoConfiguration&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>主要输出以下配置</p>
+<blockquote>
+<p>DispatcherServlet<br>MultipartResolver</p>
+</blockquote>
+<p>DispatcherServlet会通过容器自动注入一下bean</p>
+<blockquote>
+<p>MultipartResolver<br>LocaleResolver<br>ThemeResolver<br>HandlerMapping<br>HandlerAdapter<br>HandlerExceptionResolver<br>RequestToViewNameTranslator<br>FlashMapManager<br>ViewResolver</p>
+</blockquote>
+
       
 
       
@@ -196,18 +237,74 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/20/web/传统WEB项目转Spring Boot---注解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">传统WEB项目转Spring Boot---注解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -215,140 +312,10 @@
 
 
   
-    <article id="post-web/传统WEB项目转Spring Boot---注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/web/传统WEB项目转Spring Boot---注解/">传统WEB项目转Spring Boot---注解</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2017/02/20/web/传统WEB项目转Spring Boot---注解/" class="archive-article-date">
-  	<time datetime="2017-02-20T00:50:28.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于传统WEB项目转为一个Sring Boot项目一些配置,关于注解的解释<br></p>
-        
-          <a class="article-more-a" href="/2017/02/20/web/传统WEB项目转Spring Boot---注解/#more">more >></a>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/20/web/传统WEB项目转Spring Boot---注解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-android/Fragment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/22/android/Fragment/">Fragment</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/22/android/Fragment/" class="archive-article-date">
-  	<time datetime="2016-01-22T00:44:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>android学了一段时间了，文章看了无数，优秀的文章很多，各种技术介绍的也都十分清晰，但是总感觉差点什么，也许把自己的感受记录下来才能形成自己的东西。一直使用有道云笔记，各种文章记录了上百篇，这些文章通常只是静静的躺在那里,虽然已经记录在我的笔记里，但那仍然不是属于的我东西。我们要学会管理自己的知识。<br>关于知识管理方面，请参考文章：<a href="http://blog.xiaohansong.com/2016/01/16/kownledge-Management/">程序员的知识管理</a>  </p>
-<p>因为最近用到了Fragment，所以先从Fragment开始</p>
-        
-          <a class="article-more-a" href="/2016/01/22/android/Fragment/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/22/android/Fragment/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -370,8 +337,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

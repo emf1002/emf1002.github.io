@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Never Ever Stop Trying</title>
+  <title>传统WEB项目转Spring Boot---注解 | Never Ever Stop Trying</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Never Ever Stop Trying">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="关于传统WEB项目转为一个Sring Boot项目一些配置,关于注解的解释">
+<meta property="og:type" content="article">
+<meta property="og:title" content="传统WEB项目转Spring Boot---注解">
+<meta property="og:url" content="http://yoursite.com/2017/02/20/web/传统WEB项目转Spring Boot---注解/index.html">
 <meta property="og:site_name" content="Never Ever Stop Trying">
+<meta property="og:description" content="关于传统WEB项目转为一个Sring Boot项目一些配置,关于注解的解释">
+<meta property="og:updated_time" content="2017-02-21T06:57:17.066Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Never Ever Stop Trying">
+<meta name="twitter:title" content="传统WEB项目转Spring Boot---注解">
+<meta name="twitter:description" content="关于传统WEB项目转为一个Sring Boot项目一些配置,关于注解的解释">
   
     <link rel="alternative" href="/atom.xml" title="Never Ever Stop Trying" type="application/atom+xml">
   
@@ -145,84 +149,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-web/传统WEB项目转Spring-Boot---Spring-MVC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-web/传统WEB项目转Spring Boot---注解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/">传统WEB项目转Spring Boot---Spring MVC</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/" class="archive-article-date">
-  	<time datetime="2017-02-20T07:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Spring Boot自动化配置帮我们做了很多工作，关于Spring MVC我们来看一下默认情况下都配置了什么,对于每项配置的作用请参考Spring MVC相关技术文章<br></p>
-        
-          <a class="article-more-a" href="/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-web/传统WEB项目转Spring Boot---注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/web/传统WEB项目转Spring Boot---注解/">传统WEB项目转Spring Boot---注解</a>
+    <h1 class="article-title" itemprop="name">
+      传统WEB项目转Spring Boot---注解
     </h1>
   
 
@@ -235,10 +169,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于传统WEB项目转为一个Sring Boot项目一些配置,关于注解的解释<br></p>
-        
-          <a class="article-more-a" href="/2017/02/20/web/传统WEB项目转Spring Boot---注解/#more">more >></a>
-        
+        <p>关于传统WEB项目转为一个Sring Boot项目一些配置,关于注解的解释<br><a id="more"></a></p>
+<h2 id="1、配置注解"><a href="#1、配置注解" class="headerlink" title="1、配置注解"></a>1、配置注解</h2><p>首先关于配置相关的注解有<code>@Configuration</code> <code>@ComponentScan</code> <code>@EnableAutoConfiguration</code> <code>@ImportResource</code>等等</p>
+<h3 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h3><p>作用类似于一个Spring的xml配置文件，使用在类上，可以类里面的方法上使用<code>@Bean</code>注解配置一个Bean</p>
+<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h3><p><code>@ComponentScan</code> 作用相当于xml配置文件里的<code>&lt;context:component-scan&gt;</code> ,可以指定<code>basePackages</code>，默认basePackages为注解类所在的包。</p>
+<h3 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h3><p>使用Spring Boot自动配置的一个关键注解 ，在spring-boot-autoconfigure的jar包下，有个spring.factories文件，部分代码如下<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="comment"># Auto Configure</span></div><div class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration=<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.cloud.CloudAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration,<span class="string">\</span></div><div class="line">org.springframework.boot.autoconfigure.couchbase.CouchbaseAutoConfiguration,<span class="string">\</span></div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>这是Spring Boot默认定义全部使用<code>@Configuration</code>注解的类，程序启动时会扫描这些类，并根据条件判断是否启用这些配置，同时还会把含有该注解类的包作为顶层包，搜索自定义的@Configuration</p>
+<p><code>@EnableAutoConfiguration</code> 可以使用<code>exclude</code>设置需要排除自动配置的类，使用<code>excludeName</code>设置需要排除的类名</p>
+<p>开发调试时，启用Spring Boot debug模式，可以通过日志配置文件配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"org.springframework.boot"</span> <span class="attr">level</span>=<span class="string">"DEBUG"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>开启日志DEBUG输出后，会输出以下内容<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">=========================</div><div class="line">AUTO-CONFIGURATION REPORT</div><div class="line">=========================</div><div class="line"></div><div class="line"></div><div class="line">Positive matches:    //匹配到的自动配置的类列表</div><div class="line"><span class="code">     DataSourceAutoConfiguration matched:  //类名</span></div><div class="line"><span class="code">      - @ConditionalOnClass found required classes 'javax.sql.DataSource'.... </span></div><div class="line"></div><div class="line"><span class="section">Negative matches:   //未匹配的类列表</span></div><div class="line">-----------------</div><div class="line"></div><div class="line"><span class="code">   ActiveMQAutoConfiguration:   //类名</span></div><div class="line"><span class="code">      Did not match:</span></div><div class="line"><span class="code">         - @ConditionalOnClass did not find required classes 'javax.jms.ConnectionFactory', ...</span></div><div class="line"></div><div class="line"><span class="section">Exclusions:   //排除的自动配置列表</span></div><div class="line">-----------</div><div class="line"></div><div class="line"><span class="code">    org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration</span></div><div class="line"><span class="code">    ...</span></div><div class="line"></div><div class="line"><span class="section">Unconditional classes:  //无条件匹配的类,但在方法上可能存在匹配条件</span></div><div class="line">----------------------</div><div class="line"><span class="code">    org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration</span></div><div class="line"><span class="code">    ...</span></div></pre></td></tr></table></figure></p>
+<p>根据以上输出内容，可以灵活配置哪些需要自动出来里，哪些需要排除</p>
+<h3 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h3><p><code>@SpringBootApplication</code> 相当于以上三个注解同时作用。</p>
+<h3 id="Import"><a href="#Import" class="headerlink" title="@Import"></a>@Import</h3><p>作用相当于xml配置文件中的<import>标签,可以导入<code>@Configuration</code>注解的类</import></p>
+<h3 id="ImportResource"><a href="#ImportResource" class="headerlink" title="@ImportResource"></a>@ImportResource</h3><p>作用类似于<code>@Import</code>，可以导入一个xml配置文件</p>
+<h2 id="2、条件注解"><a href="#2、条件注解" class="headerlink" title="2、条件注解"></a>2、条件注解</h2><h3 id="Class条件"><a href="#Class条件" class="headerlink" title="Class条件"></a>Class条件</h3><p><code>@ConditionalOnClass</code><br><code>@ConditionalOnMissingClass</code><br>通过设置<code>value</code>属性来配置classpath下是否含有特定的类来决定是否启用该配置<br>另外也可以通过<code>name</code>属性来配置类名称。</p>
+<h3 id="Bean条件"><a href="#Bean条件" class="headerlink" title="Bean条件"></a>Bean条件</h3><p><code>@ConditionalOnBean</code><br><code>@ConditionalOnMissingBean</code><br>通过容器中是否含有某个Bean来决定是否启用该配置，可以通过Bean的类型或name来配置</p>
+<h3 id="Property条件"><a href="#Property条件" class="headerlink" title="Property条件"></a>Property条件</h3><p><code>@ConditionalOnProperty</code><br>可以通过配置属性前缀<code>prefix</code>和<code>name</code>等来检查配置文件中是否包含相关配置来决定是否启用该配置</p>
+<h3 id="Resource条件"><a href="#Resource条件" class="headerlink" title="Resource条件"></a>Resource条件</h3><p><code>@ConditionalOnResource</code><br>包含指定的资源文件是才启用该配置</p>
+<h3 id="Web-application条件"><a href="#Web-application条件" class="headerlink" title="Web application条件"></a>Web application条件</h3><p><code>@ConditionalOnWebApplication</code><br><code>@ConditionalOnNotWebApplication</code><br>通过是否为一个‘web application’来决定是否启用</p>
+<h2 id="3、配置排序注解"><a href="#3、配置排序注解" class="headerlink" title="3、配置排序注解"></a>3、配置排序注解</h2><p><code>@AutoConfigureAfter</code><br><code>@AutoConfigureBefore</code><br><code>@AutoConfigureOrder</code></p>
+<p>这几个注解用于标识该配置类在其他某个配置之前或者之后生效，通常用于开发starter项目时。关于starter项目开发，可参考<a href="http://docs.spring.io/spring-boot/docs/1.4.1.RELEASE/reference/htmlsingle/#boot-features-custom-starter" target="_blank" rel="external">Creating your own starter</a></p>
+<p>通常开发starter应该在autoconfigure项目中加入以下依赖：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-autoconfigure-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>spring-boot-configuration-processor</code>用于生成<code>spring-configuration-metadata.json</code>,里面包含了属性配置信息，可用于编写配置文件如application.xml时，供IDE进行配置代码提示</p>
+<p><code>spring-boot-autoconfigure-processor</code>用于根据排序注解生成文件<code>spring-autoconfigure-metadata.properties</code>,里面包含了配置的顺序信息</p>
+<p>如果想要通过注解实现控制自己配置的优先级顺序，需要添加META-INF/spring.factories</p>
+
       
 
       
@@ -264,18 +219,83 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/20/web/传统WEB项目转Spring Boot---注解/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/20/web/传统WEB项目转Spring Boot---注解/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/02/20/web/传统WEB项目转Spring-Boot---Spring-MVC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          传统WEB项目转Spring Boot---Spring MVC
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/22/android/Fragment/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Fragment</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -283,72 +303,10 @@
 
 
   
-    <article id="post-android/Fragment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/22/android/Fragment/">Fragment</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2016/01/22/android/Fragment/" class="archive-article-date">
-  	<time datetime="2016-01-22T00:44:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>android学了一段时间了，文章看了无数，优秀的文章很多，各种技术介绍的也都十分清晰，但是总感觉差点什么，也许把自己的感受记录下来才能形成自己的东西。一直使用有道云笔记，各种文章记录了上百篇，这些文章通常只是静静的躺在那里,虽然已经记录在我的笔记里，但那仍然不是属于的我东西。我们要学会管理自己的知识。<br>关于知识管理方面，请参考文章：<a href="http://blog.xiaohansong.com/2016/01/16/kownledge-Management/">程序员的知识管理</a>  </p>
-<p>因为最近用到了Fragment，所以先从Fragment开始</p>
-        
-          <a class="article-more-a" href="/2016/01/22/android/Fragment/#more">more >></a>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/22/android/Fragment/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -370,8 +328,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
